@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content" android:layout_height="wrap_content">
+    <TextView
+        android:background="@color/primary_color"
+        android:text="IMDB"
+        android:textColor="@color/white"
+        android:textSize="25dp"
+        android:padding="10dp"
+        android:id="@+id/tvHeaderRegistry"
+        android:textStyle="bold"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal" />
+
+    <LinearLayout
+        android:background="#3BFFC107"
+        android:layout_below="@+id/tvHeaderRegistry"
+        android:paddingVertical="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingHorizontal="40dp"
+        >
+
+        <EditText
+            android:id="@+id/edtEmail"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/custome_input_text"
+            android:hint="Email"
+            android:inputType="text"
+            android:textSize="18dp"
+            android:paddingHorizontal="10dp" />
+        <EditText
+            android:id="@+id/edtFullname"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:textSize="18dp"
+            android:background="@drawable/custome_input_text"
+            android:hint="Full name"
+            android:inputType="text"
+            android:paddingHorizontal="10dp" />
+
+        <EditText
+            android:id="@+id/edtUsernameRegistry"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:textSize="18dp"
+            android:background="@drawable/custome_input_text"
+            android:hint="Username"
+            android:inputType="text"
+            android:paddingHorizontal="10dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custome_input_text"
+            android:hint="Password"
+            android:textSize="18dp"
+            android:id="@+id/edtPasswordRegistry"
+            android:inputType="textPassword"
+            android:paddingHorizontal="10dp" />
+
+
+        <EditText
+            android:id="@+id/edtConfirmPassRegistry"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custome_input_text"
+            android:hint="Confirm password"
+            android:inputType="textPassword"
+            android:textSize="18dp"
+            android:paddingHorizontal="10dp" />
+
+        <Button
+            android:id="@+id/btnRegistry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button_cutom"
+            android:text="Registry"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="23dp" />
+
+        <TextView
+            android:id="@+id/tvCancelResgistry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal"
+            android:text="Cancel"
+            android:padding="5dp"
+            android:textSize="18dp"
+            android:textColor="@color/black" />
+    </LinearLayout>
+</RelativeLayout>

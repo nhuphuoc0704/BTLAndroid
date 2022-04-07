@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerHorizontal="true"
+    tools:context=".LoginActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginVertical="10dp"
+        android:orientation="vertical"
+
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="30dp"
+            android:gravity="center_horizontal"
+            android:text="IMDB"
+            android:textColor="@color/black"
+            android:textSize="50dp"
+            android:textStyle="bold" />
+
+
+        <ImageView
+            android:background="@color/primary_color"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:scaleType="fitCenter"
+            />
+
+        <EditText
+            android:id="@+id/edtUsername"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/custome_input_text"
+            android:inputType="text"
+            android:paddingHorizontal="10dp"
+            android:hint="Username" />
+
+        <EditText
+            android:id="@+id/edtPassword"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custome_input_text"
+            android:inputType="textPassword"
+            android:paddingHorizontal="10dp"
+            android:hint="Password" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:paddingVertical="10dp"
+            android:text="Quên mật khẩu"
+            android:textSize="15dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_left_space"
+            android:text="Đăng nhập"
+            android:textAllCaps="false"
+            android:id="@+id/btnLoginActivity"
+            android:textColor="@color/white"
+            android:textSize="23dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingVertical="10dp"
+            android:text="Lựa chọn khác"
+            android:textColor="@color/black"
+            android:textSize="15dp" />
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/sign_in_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="30dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="Tạo tài khoản"
+                android:id="@+id/tvRegistry"
+                android:textColor="@color/black" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

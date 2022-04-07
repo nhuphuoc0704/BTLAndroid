@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">IMDB</string>
+
+    /----------Fragment Detail Movie---------------
+    <string name="btn_watch_trailer">Watch trailer</string>
+    <string name="storyline_ex">Chung ta khong thuoc ve nhua. Chung ta khong thuoc ve nhau, chung ta khong thuoc ve nhau, em hay cu di ben nguoi ma em can, trai tim khong la cua nhau, giac mo khong con ve nhau</string>
+    <string name="app_label">IMDB</string>
+    <string name="search_hint">Search a movie now</string>
+</resources>

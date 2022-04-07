@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/imgBannerMovie"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/youtubePlayerView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:name="com.google.android.youtube.player.YouTubePlayerSupportFragment"
+            ></FrameLayout>
+
+
+            <Button
+                android:layout_marginVertical="5dp"
+                android:background="@drawable/button_cutom"
+                android:text="@string/btn_watch_trailer"
+                android:layout_marginHorizontal="15dp"
+                android:id="@+id/btnWatchTrailer"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"/>
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tablayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewpage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

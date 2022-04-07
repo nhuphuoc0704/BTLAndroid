@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+
+    android:paddingHorizontal="10dp"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:background="@drawable/bg_corner"
+        android:layout_centerVertical="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvHeaderRegistry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_register_header"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:text="Rating"
+            android:textColor="@color/white"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_marginVertical="10dp"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_gravity="center_horizontal"
+            android:numStars="10"
+            android:stepSize="0.1"
+            android:rating="5"
+            android:isIndicator="false"
+            android:progressTint="@color/primary_color"
+            android:scaleX="1.5"
+            android:scrollbars="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="Title"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edtTitleComment"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/custome_input_text"
+                android:hint="Add your title here"
+                android:inputType="text"
+                android:paddingHorizontal="10dp"
+                android:textSize="18dp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="Content"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edtContent"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custome_input_text"
+            android:gravity="top"
+            android:hint="Type somethings in here"
+            android:inputType="textMultiLine"
+            android:lineHeight="30dp"
+            android:maxLines="5"
+            android:padding="5dp"
+            android:paddingHorizontal="10dp"
+            android:textSize="16dp" />
+
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button_cutom"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="2dp"
+            android:text="Submit"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="22dp" />
+
+        <TextView
+            android:id="@+id/tvCancelRating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_horizontal"
+            android:padding="5dp"
+            android:text="Cancel"
+            android:textColor="@color/black"
+            android:textSize="18dp" />
+    </LinearLayout>
+
+
+</RelativeLayout>

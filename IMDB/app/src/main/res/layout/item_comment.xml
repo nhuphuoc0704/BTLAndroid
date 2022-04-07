@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    >
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgAvatarComment"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_width="60dp"
+        android:layout_height="60dp"/>
+    <LinearLayout
+        android:padding="5dp"
+        android:background="@drawable/bg_comment"
+        android:layout_toRightOf="@+id/imgAvatarComment"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tvNameOfUserComment"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:textSize="8.5dp"
+            android:id="@+id/tvTimeCreate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="1.5dp"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+
+                android:textSize="13dp"
+
+                android:textStyle="bold"
+                android:id="@+id/tvTitleComment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tvStarComment"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="5dp"
+                android:textSize="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_star_24" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvContent"
+            android:textSize="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</RelativeLayout>

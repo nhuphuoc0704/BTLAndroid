@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#7EDCD6D6"
+    android:padding="2dp"
+
+    android:layout_height="64dp">
+    <ImageView
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_baseline_star_24"
+        android:id="@+id/starNoti"
+        android:layout_width="40dp"
+        android:layout_height="40dp"/>
+    <LinearLayout
+        android:layout_toLeftOf="@id/tvTimeNoti"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:layout_toRightOf="@id/starNoti"
+        android:layout_marginLeft="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="10dp">
+        <TextView
+            android:text="IMDB - Registry"
+            style="@style/TextAppearance.Compat.Notification.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            style="@style/TextAppearance.Compat.Notification.Info"
+            android:id="@+id/tvNotiRegistrySuccess"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+    <TextView
+        style="@style/TextAppearance.Compat.Notification.Info"
+        android:id="@+id/tvTimeNoti"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>

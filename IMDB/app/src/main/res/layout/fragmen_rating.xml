@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ProgressBar
+                android:layout_centerInParent="true"
+                android:id="@+id/progressbarRatingFragment"
+                android:layout_width="40dp"
+                android:layout_height="40dp"/>
+            <LinearLayout
+                android:paddingHorizontal="10dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:padding="5dp"
+                    android:weightSum="10"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textColor="@color/blue_text_button"
+                        android:id="@+id/tvRatings"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="20dp"
+                        android:layout_weight="5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"/>
+                    <Button
+                        android:background="@drawable/button_cutom"
+                        android:text="Rating here"
+                        android:textColor="@color/white"
+                        android:id="@+id/btnRating"
+                        android:layout_weight="5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/rvComment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+        </RelativeLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
