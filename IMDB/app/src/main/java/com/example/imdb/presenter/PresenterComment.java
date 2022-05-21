@@ -22,8 +22,13 @@ public class PresenterComment {
     public void addRating(Comment comment){
         api.addRating(comment);
     }
+
+    public void editRating(Comment c, float oldStar){
+        api.editRating(c,oldStar);
+    }
     public interface IOnComment{
         public void getAllCommentOfMovie(List<Comment> list);
-        public void onRatingSuccess(String results);
+        public void onRatingSuccess(Comment comment);
+        public void editRating(Comment cmt);
     }
 }

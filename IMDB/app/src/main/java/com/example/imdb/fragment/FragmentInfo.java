@@ -13,11 +13,17 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.imdb.R;
+import com.example.imdb.model.MessageEvent;
 import com.example.imdb.model.Movie;
+import com.google.gson.Gson;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 public class FragmentInfo extends Fragment {
     public TextView tvName, tvDirector, tvStoryline, tvWriter, tvStar, tvDuration, tvRelease_date, tvStars;
-    private Movie m;
+    private Movie mMovie;
 
     public FragmentInfo() {
 
@@ -42,8 +48,26 @@ public class FragmentInfo extends Fragment {
     public void onViewCreated(@NonNull View v, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(v, savedInstanceState);
         Bundle bundle = getArguments();
-        m = (Movie) bundle.get("data");
-        Log.i(FragmentInfo.class.getName(), m.getName());
+        mMovie = (Movie) bundle.get("data");
+
+
+        init(v);
+        setData();
+
+    }
+
+    private void setData() {
+        tvName.setText(mMovie.getName());
+        tvWriter.setText(mMovie.getWriters());
+        tvStoryline.setText(mMovie.getStoryline());
+        tvStar.setText(mMovie.getStar() + "");
+        tvDuration.setText(mMovie.getDuration());
+        tvRelease_date.setText(mMovie.getRelease_date());
+        tvStars.setText(mMovie.getStars());
+        tvDirector.setText(mMovie.getDirector());
+    }
+
+    private void init(View v) {
         tvDirector = v.findViewById(R.id.tvDirector);
         tvName = v.findViewById(R.id.tvNameMovieInfo);
         tvDuration = v.findViewById(R.id.tvDuration);
@@ -52,20 +76,24 @@ public class FragmentInfo extends Fragment {
         tvStars = v.findViewById(R.id.tvStars);
         tvStoryline = v.findViewById(R.id.tvStoryline);
         tvWriter = v.findViewById(R.id.tvWriters);
-
-
-        tvName.setText(m.getName());
-        tvWriter.setText(m.getWriters());
-        tvStoryline.setText(m.getStoryline());
-        tvStar.setText(m.getStar() + "");
-        tvDuration.setText(m.getDuration());
-        tvRelease_date.setText(m.getRelease_date());
-        tvStars.setText(m.getStars());
-        tvDirector.setText(m.getDirector());
-
     }
 
-    private void init(View v) {
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessage(MessageEvent event) {
+        Gson gson = new Gson();
+        Movie movieEvent = gson.fromJson(event.message, Movie.class);
+        tvStar.setText(movieEvent.getStar()+"");
+    }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
     }
 }

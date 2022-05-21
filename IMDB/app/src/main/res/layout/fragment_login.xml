@@ -15,10 +15,10 @@
             android:paddingVertical="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_cutom"
+            android:background="@drawable/button_custom"
             android:text="Login now"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="@color/button_text"
             android:textSize="26dp" />
 
 

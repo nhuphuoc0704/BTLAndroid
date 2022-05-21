@@ -1,6 +1,7 @@
 package com.example.imdb.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Movie implements Serializable {
     private int id,ratings;
@@ -138,5 +139,14 @@ public class Movie implements Serializable {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    @Override
+    public boolean equals(Object object){
+        boolean isCheck= false;
+        if(object instanceof  Movie){
+           isCheck= ((Movie) object).getId()== this.id;
+        }
+        return isCheck;
     }
 }

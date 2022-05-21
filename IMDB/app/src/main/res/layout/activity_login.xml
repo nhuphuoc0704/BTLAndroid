@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_centerHorizontal="true"
+    android:background="@color/bg_color"
     tools:context=".LoginActivity">
 
     <LinearLayout
@@ -34,25 +35,49 @@
             android:scaleType="fitCenter"
             />
 
-        <EditText
-            android:id="@+id/edtUsername"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="60dp"
-            android:background="@drawable/custome_input_text"
-            android:inputType="text"
-            android:paddingHorizontal="10dp"
-            android:hint="Username" />
+            android:layout_height="wrap_content"
+            android:scrollbarSize="25dp"
+            app:passwordToggleTintMode="multiply"
 
-        <EditText
-            android:id="@+id/edtPassword"
+
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtUsername"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="60dp"
+                android:background="@drawable/custome_input_text"
+                android:inputType="text"
+                android:paddingHorizontal="10dp"
+                android:hint="Username"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/custome_input_text"
-            android:inputType="textPassword"
-            android:paddingHorizontal="10dp"
-            android:hint="Password" />
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            app:passwordToggleTint="@color/primary_color"
+            android:scrollbarSize="25dp"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTintMode="multiply"
+
+
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtPassword"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custome_input_text"
+                android:inputType="textPassword"
+                android:paddingHorizontal="10dp"
+                 />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:layout_width="wrap_content"
@@ -65,7 +90,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/custom_left_space"
+            android:background="@drawable/button_custom"
             android:text="Đăng nhập"
             android:textAllCaps="false"
             android:id="@+id/btnLoginActivity"

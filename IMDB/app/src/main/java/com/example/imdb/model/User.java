@@ -1,10 +1,13 @@
 package com.example.imdb.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class User implements Serializable {
     private int id;
     private String username,email,password,fullname,avatar;
+    private List<Movie> listUserWatchList;
 
     public User(){
         super();
@@ -15,6 +18,7 @@ public class User implements Serializable {
         this.password = password;
         this.fullname = fullname;
         this.avatar = avatar;
+        listUserWatchList= new ArrayList<>();
     }
 
     public String getAvatar() {
@@ -63,5 +67,13 @@ public class User implements Serializable {
 
     public void setFullname(String fullname) {
         this.fullname = fullname;
+    }
+
+    public List<Movie> getUserWatchList() {
+        return listUserWatchList;
+    }
+
+    public void setUserWatchList(List<Movie> userWatchList) {
+        this.listUserWatchList = userWatchList;
     }
 }

@@ -9,9 +9,20 @@
     <color name="white">#FFFFFFFF</color>
 
 
-    <color name="primary_color">#FFC107</color>
+    <color name="primary_color">#FFD93D</color>
     <color name="primary_color2">#F3FFE607</color>
     <color name="blue_text_button">#FF22A2F0</color>
+
+
+    <color name="bg_btn_pressed">#C1E4E7E8</color>
+    <color name="bg_btn">#F0FBFBFB</color>
+    <color name="stroke_btn">#F07E7C7C</color>
+
+    <color name="bg_color">#DCD6D6</color>
+
+
+
+
 
 
 </resources>

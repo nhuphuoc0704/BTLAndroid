@@ -12,10 +12,12 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
@@ -31,6 +33,7 @@ import com.squareup.picasso.Picasso;
 
 public class FragmentDetail extends Fragment {
     ViewPager viewPager;
+    ImageButton imgbtnBack;
     TabLayout tabLayout;
     YouTubePlayerSupportFragment youTubePlayerFragment;
     YouTubePlayer player;
@@ -66,6 +69,8 @@ public class FragmentDetail extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        AppCompatActivity appCompatActivity = (AppCompatActivity)getActivity();
+        appCompatActivity.getSupportActionBar().setTitle("Thông tin chi tiết");
         btnWatchTrailer = view.findViewById(R.id.btnWatchTrailer);
         Bundle bundle = getArguments();
         movie = (Movie) bundle.get("movie");
@@ -97,8 +102,17 @@ public class FragmentDetail extends Fragment {
             }
         });
 
+
         tabLayout = view.findViewById(R.id.tablayout);
         viewPager = view.findViewById(R.id.viewpage);
+        imgbtnBack=view.findViewById(R.id.imgbtnBack);
+
+        imgbtnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getFragmentManager().popBackStack();
+            }
+        });
 
         adapter = new ViewPagerAdapter(getChildFragmentManager(), 0);
 
@@ -121,5 +135,6 @@ public class FragmentDetail extends Fragment {
         tabLayout.setupWithViewPager(viewPager);
 
     }
+
 
 }

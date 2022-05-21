@@ -7,7 +7,7 @@
 
 </item>
 <item
-    android:title="Notifi"
+    android:title="WatchList"
     android:id="@+id/ic_notification"
     android:icon="@drawable/ic_baseline_notifications_24">
 

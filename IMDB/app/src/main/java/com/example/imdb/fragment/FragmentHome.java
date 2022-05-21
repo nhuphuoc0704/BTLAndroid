@@ -3,13 +3,16 @@ package com.example.imdb.fragment;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,20 +20,28 @@ import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 import com.example.imdb.MainActivity;
 import com.example.imdb.R;
 import com.example.imdb.adapter.AdapterSliderViewPager2;
 import com.example.imdb.adapter.CategoryAdapter;
 import com.example.imdb.model.Category;
+import com.example.imdb.model.Movie;
+import com.example.imdb.model.MovieWatchList;
+import com.example.imdb.model.User;
 import com.example.imdb.presenter.PresenterHomeFragment;
+import com.google.gson.Gson;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Timer;
 
 import me.relex.circleindicator.CircleIndicator3;
 
 public class FragmentHome extends Fragment implements PresenterHomeFragment.IOnHomeFragment {
-    private RecyclerView rvCategory;
+    private ShimmerRecyclerView rvCategory;
     private PresenterHomeFragment presenterHomeFragment;
     private CategoryAdapter categoryAdapter;
     private ProgressBar progressBar;
@@ -62,8 +73,10 @@ public class FragmentHome extends Fragment implements PresenterHomeFragment.IOnH
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragmenthome,container,false);
-
+        AppCompatActivity appCompatActivity = (AppCompatActivity)getActivity();
+        appCompatActivity.getSupportActionBar().setTitle("IMDB");
         rvCategory= view.findViewById(R.id.rvCategory);
+        rvCategory.showShimmerAdapter();
         progressBar=view.findViewById(R.id.progressbar);
         circleIndicator3=view.findViewById(R.id.circleindicator);
         viewPager2= view.findViewById(R.id.viewpagerSlider);
@@ -74,7 +87,7 @@ public class FragmentHome extends Fragment implements PresenterHomeFragment.IOnH
         progressBar.setVisibility(View.VISIBLE);
         presenterHomeFragment.onGetAllCategory();
 
-        categoryAdapter= new CategoryAdapter(getContext(),(MainActivity) getActivity());
+        categoryAdapter= new CategoryAdapter(getContext(),(MainActivity) getActivity(),this);
 
         return view;
     }
@@ -82,16 +95,6 @@ public class FragmentHome extends Fragment implements PresenterHomeFragment.IOnH
     @Override
     public void onGetData(List<Category> list) {
         progressBar.setVisibility(View.GONE);
-//        LinearLayoutManager linearLayoutManager1= new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false);
-//        rvSlider.setLayoutManager(linearLayoutManager1);
-//        rvSlider.setFocusable(false);
-//        rvSlider.setNestedScrollingEnabled(false);
-//
-//        sliderAdapter.setData(list.get(0).getMovies());
-//        rvSlider.setAdapter(sliderAdapter);
-//        LinearSnapHelper linearSnapHelper= new LinearSnapHelper();
-//        linearSnapHelper.attachToRecyclerView(rvSlider);
-//        autoSlideAvatar(linearLayoutManager1);
 
         viewPager2.setOffscreenPageLimit(3);
         viewPager2.setClipToPadding(false);
@@ -126,31 +129,23 @@ public class FragmentHome extends Fragment implements PresenterHomeFragment.IOnH
         });
 
         LinearLayoutManager linearLayoutManager= new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
-
+        rvCategory.hideShimmerAdapter();
         categoryAdapter.setData(list);
         rvCategory.setLayoutManager(linearLayoutManager);
         rvCategory.setAdapter(categoryAdapter);
 
 
     }
-//    private  void autoSlideAvatar(LinearLayoutManager linearLayoutManager1){
-//
-//        timer= new Timer();
-//        timer.schedule(new TimerTask() {
-//            @Override
-//            public void run() {
-//                if(linearLayoutManager1.findLastCompletelyVisibleItemPosition()<sliderAdapter.getItemCount()-1){
-//                    linearLayoutManager1.smoothScrollToPosition(rvSlider,new RecyclerView.State(),
-//                            linearLayoutManager1.findLastCompletelyVisibleItemPosition()+1);
-//                }
-//                else {
-//                    linearLayoutManager1.smoothScrollToPosition(rvSlider,new RecyclerView.State(),
-//                            0);
-//                }
-//                if(linearLayoutManager1.findLastCompletelyVisibleItemPosition()<sliderAdapter.getItemCount()-1);
-//            }
-//        },2000,4000);
-//    }
+
+    @Override
+    public void addMovieWatchList(int id) {
+        Log.e("Add Success",id+"");
+    }
+
+    @Override
+    public void removeMovieWatchListResult(int result) {
+        Log.e("Remove Success",result+"");
+    }
 
 
     @Override
@@ -163,5 +158,20 @@ public class FragmentHome extends Fragment implements PresenterHomeFragment.IOnH
     public void onResume() {
         super.onResume();
         handler.postDelayed(runnable,3000);
+    }
+
+    public void addMovieWatchList(Movie m) {
+        User user= (new Gson()).fromJson(MainActivity.sharedPreferences.getString("user",""),User.class);
+        Date now= new Date();
+        SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");
+        String add_time=sdf.format(now);
+        MovieWatchList movieWatchList= new MovieWatchList(add_time,m,user);
+        presenterHomeFragment.addMovieWatchList(movieWatchList);
+        Toast.makeText(getContext(),"Added the movie to watch list",Toast.LENGTH_SHORT).show();
+    }
+
+    public void removeMovieWatchList(int id_movie, int id_user) {
+        presenterHomeFragment.removeMovieWatchList(id_movie, id_user);
+        Toast.makeText(getContext(),"Removed the movie to watch list",Toast.LENGTH_SHORT).show();
     }
 }

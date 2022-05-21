@@ -12,6 +12,7 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.imdb.MainActivity;
@@ -34,6 +35,8 @@ public class FragmentLogin extends Fragment {
         View view=inflater.inflate(R.layout.fragment_login,container,false);
         Button btnLogin= view.findViewById(R.id.btnLogin);
         mainActivity= (MainActivity) getActivity();
+        AppCompatActivity appCompatActivity = (AppCompatActivity)getActivity();
+        appCompatActivity.getSupportActionBar().setTitle("Đăng nhập");
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

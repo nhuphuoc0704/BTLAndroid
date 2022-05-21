@@ -2,15 +2,19 @@ package com.example.imdb.apicontroller;
 
 import android.util.Log;
 
+import com.example.imdb.model.MovieWatchList;
 import com.example.imdb.model.User;
 import com.example.imdb.presenter.PresenterUser;
 
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 public class APIUser extends APIController {
@@ -39,24 +43,6 @@ public class APIUser extends APIController {
         });
     }
 
-//    public void getUser(User u){
-//        CallAPIUser api= retrofit.create(CallAPIUser.class);
-//        Call<User> call= api.getUser(u);
-//        call.enqueue(new Callback<User>() {
-//            @Override
-//            public void onResponse(Call<User> call, Response<User> response) {
-//                if(response.isSuccessful()){
-//                    User u= response.body();
-//                    i.onGetUser(u);
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<User> call, Throwable t) {
-//
-//            }
-//        });
-//    }
 
     public void registry(User u){
         CallAPIUser api= retrofit.create(CallAPIUser.class);
@@ -110,5 +96,9 @@ public class APIUser extends APIController {
 
         @POST("user/loginbygmail/")
         Call<User> loginByGmail(@Body User u);
+
+
+
+
     }
 }

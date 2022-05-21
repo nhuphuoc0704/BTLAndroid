@@ -17,7 +17,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-        topAnimation= AnimationUtils.loadAnimation(this,R.anim.top_animation);
+        topAnimation= AnimationUtils.loadAnimation(this,R.anim.fade_in_2000);
         tvSlogan= findViewById(R.id.tvSlogan);
         tvSlogan.setAnimation(topAnimation);
 
@@ -30,6 +30,6 @@ public class SplashScreenActivity extends AppCompatActivity {
                 startActivity(new Intent(SplashScreenActivity.this,MainActivity.class));
                 finish();
             }
-        },2500);
+        },2000);
     }
 }

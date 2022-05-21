@@ -22,13 +22,15 @@ import retrofit2.http.Path;
 
 public class APIController  {
     public static Retrofit retrofit;
+     //192.168.100.7   192.168.100.2   192.168.42.116
+
     public APIController( ){
         if(retrofit==null){
             Gson gson = new GsonBuilder()
                     .setLenient()
                     .create();
             retrofit=  new Retrofit.Builder()
-                    .baseUrl("http://192.168.100.7:8080/APIRestful/rest/")
+                    .baseUrl("http://192.168.43.92:8080/APIRestful/rest/")
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .build();
         }

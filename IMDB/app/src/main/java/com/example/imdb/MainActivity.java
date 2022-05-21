@@ -30,6 +30,7 @@ import com.example.imdb.fragment.FragmentHome;
 import com.example.imdb.fragment.FragmentLogin;
 import com.example.imdb.fragment.FragmentNotification;
 import com.example.imdb.fragment.FragmentRating;
+import com.example.imdb.fragment.FragmentSearchResult;
 import com.example.imdb.fragment.FragmentUser;
 import com.example.imdb.model.BottomNavigationBehavior;
 import com.example.imdb.model.Movie;
@@ -43,6 +44,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 
+import java.io.Serializable;
 import java.util.List;
 
 
@@ -53,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     public static SharedPreferences sharedPreferences;
     public static SharedPreferences.Editor editor;
     public static final String SHARED_PREF_NAME = "SHARED_PREF_NAME";
-
+    Gson gson;
     public InternetBroadcastReceiver receiver;
 
 
@@ -126,7 +128,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 getFragment( FragmentHome.newInstance());
                 return true;
             case R.id.ic_notification:
-                getFragment( FragmentNotification.newInstance());
+                FragmentNotification fragmentNotification= FragmentNotification.newInstance();
+                String jsonUser= sharedPreferences.getString("user","");
+                User u= gson.fromJson(jsonUser,User.class);
+                fragmentNotification.getArguments().putSerializable("user",u);
+                Log.e(MainActivity.class.getName(),(new Gson().toJson(u)));
+                getFragment(fragmentNotification );
                 return true;
             case R.id.ic_user:
                 if(sharedPreferences.getString("user","-1").equals("-1"))
@@ -136,6 +143,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         }
         return false;
     }
+
     public void gotoLoginActivity(){
         Intent i= new Intent(getBaseContext(),LoginActivity.class);
         startActivityForResult(i,11);
@@ -162,7 +170,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
     private void setSharePreferences(User user) {
-        Gson gson= new Gson();
         String jsonUser=gson.toJson(user);
         editor.putString("user",jsonUser);
         Log.i("Save data ",user.toString());
@@ -170,7 +177,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
     public void getFragment(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
+        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in,R.anim.fade_out,R.anim.fade_in,R.anim.slide_out).replace(R.id.container, fragment).addToBackStack(null).commit();
 
     }
 
@@ -179,7 +186,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         FragmentDetail fragmentDetail= FragmentDetail.newInstance();
         Bundle bundle= new Bundle();
         fragmentDetail.getArguments().putSerializable("movie",m);
-        transaction.replace(R.id.container,fragmentDetail,FragmentDetail.class.getName()).addToBackStack(FragmentDetail.class.getName()).commit();
+        transaction.setCustomAnimations(R.anim.slide_in,R.anim.fade_out,R.anim.fade_in,R.anim.slide_out).replace(R.id.container,fragmentDetail,FragmentDetail.class.getName()).addToBackStack(null).commit();
     }
 
     @Override
@@ -192,12 +199,21 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     @Override
     protected void onStart() {
         super.onStart();
+        gson= new Gson();
         //receiver=new InternetBroadcastReceiver();
         //registerReceiver(receiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
     }
 
     @Override
     public void searchable(List<Movie> list) {
-        Log.e(this.getClass().getName(),list.size()+"");
+        FragmentSearchResult fragmentSearchResult=FragmentSearchResult.newInstance();
+        fragmentSearchResult.getArguments().putSerializable("data", (Serializable) list);
+        getFragment(fragmentSearchResult);
     }
+
+    public void addMovieWatchList(Movie m) {
+
+    }
+
+
 }

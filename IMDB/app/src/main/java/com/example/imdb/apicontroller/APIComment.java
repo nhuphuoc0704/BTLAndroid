@@ -13,6 +13,7 @@ import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public class APIComment extends APIController {
@@ -43,29 +44,49 @@ public class APIComment extends APIController {
     }
 
     public void addRating(Comment c){
-        Call<Integer> call= api.addRating(c);
-        call.enqueue(new Callback<Integer>() {
+        Call<Comment> call= api.addRating(c);
+        call.enqueue(new Callback<Comment>() {
             @Override
-            public void onResponse(Call<Integer> call, Response<Integer> response) {
+            public void onResponse(Call<Comment> call, Response<Comment> response) {
                 if(response.isSuccessful()){
-                    i.onRatingSuccess(response.body().toString());
+                    i.onRatingSuccess(response.body());
                 }
             }
 
             @Override
-            public void onFailure(Call<Integer> call, Throwable t) {
+            public void onFailure(Call<Comment> call, Throwable t) {
 
             }
         });
     }
 
+    public void editRating(Comment c,float oldStar){
+        Call<Comment> call= api.editRating(c,oldStar);
+        call.enqueue(new Callback<Comment>() {
+            @Override
+            public void onResponse(Call<Comment> call, Response<Comment> response) {
+                if(response.isSuccessful()){
+                    i.editRating(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Comment> call, Throwable t) {
+
+            }
+        });
+
+    }
     public interface CallAPIComment{
 
         @GET("comment/getAllCommentOfMovie/{id}")
         Call<List<Comment>> getAllCommentOfMovie(@Path("id") int id);
 
         @POST("comment/addRating")
-        Call<Integer> addRating(@Body Comment comment);
+        Call<Comment> addRating(@Body Comment comment);
+
+        @PUT("comment/editRating/{oldStar}")
+        Call<Comment> editRating(@Body Comment comment,@Path("oldStar") float oldStar);
 
 
     }
